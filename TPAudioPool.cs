@@ -123,17 +123,17 @@ namespace TP.Utilities
         /// <summary>  
         ///  Adds AudioBundle to pool.
         /// </summary> 
-        public static void AddToPool(TPAudioBundle bundle)
+        public static void AddToPool(string bundleName, TPAudioBundle bundle)
         {
-            AddToPool(bundle.name, bundle);
+            Pool[bundleName] = bundle;
         }
 
         /// <summary>  
         ///  Adds AudioBundle to pool.
         /// </summary> 
-        public static void AddToPool(string bundleName, TPAudioBundle bundle)
+        public static void AddToPool(TPAudioBundle bundle)
         {
-            Pool[bundleName] = bundle;
+            AddToPool(bundle.name, bundle);
         }
 
         /// <summary>
@@ -182,7 +182,6 @@ namespace TP.Utilities
                     return obj.Clip;
                 }
             }
-
             return null;
         }
 
