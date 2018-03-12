@@ -13,10 +13,21 @@ namespace TP.Utilities
 
     public class TPAudioPool
     {
-        public static Dictionary<string, TPAudioBundle> Pool = new Dictionary<string, TPAudioBundle>();
+        static Dictionary<string, TPAudioBundle> Pool = new Dictionary<string, TPAudioBundle>();
         static AudioSource _source;
         static AudioSource _themeSource;
 
+        public enum Sources
+        {
+            Source,
+            Theme
+        }
+
+        /// <summary>
+        /// Gets AudioSource from GameObject named "TPAudioSource"
+        /// <para> On Get - returns source - if null, create it </para>
+        /// <para> On Set - behaves like preset </para>
+        /// </summary>
         public static AudioSource Source
         {
             get
@@ -38,7 +49,12 @@ namespace TP.Utilities
                 }
             }
         }
-        
+
+        /// <summary>
+        /// Gets AudioSource from GameObject named "TPAudioThemeSource"
+        /// <para> On Get - returns source - if null, create it </para>
+        /// <para> On Set - behaves like preset </para>
+        /// </summary>
         public static AudioSource ThemeSource
         {
             get
@@ -175,40 +191,36 @@ namespace TP.Utilities
         /// Sets clip to Source then calls PlayOneShot. 
         /// </summary>
         public static void PlayOneShot(TPAudioBundle bundle, string audioName) => Source.PlayOneShot(GetClip(bundle, audioName));
-
+        
         /// <summary>
         /// Sets clip to theme and calls Play.
         /// </summary>
-        public static void PlayTheme(TPAudioBundle bundle, string audioName) { ThemeSource.clip = GetClip(bundle, audioName); ThemeSource.Play(); }
+        public static void Play(Sources source, TPAudioBundle bundle, string audioName, ulong delay)
+        {
+            switch (source)
+            {
+                case Sources.Source:
+                    Source.clip = GetClip(bundle, audioName);
+                    Source.Play();
+                    break;
+                case Sources.Theme:
+                    ThemeSource.clip = GetClip(bundle, audioName);
+                    ThemeSource.Play();
+                    break;
+            }
+        }
         /// <summary>
         /// Sets clip to theme and calls Play.
         /// </summary>
-        public static void PlayTheme(TPAudioBundle bundle, string audioName, ulong delay) { ThemeSource.clip = GetClip(bundle, audioName); ThemeSource.Play(delay); }
+        public static void Play(Sources source, TPAudioBundle bundle, string audioName) => Play(source, bundle, audioName, 0);
         /// <summary>
         /// Sets clip to theme and calls Play.
         /// </summary>
-        public static void PlayTheme(string bundleName, string audioName) { ThemeSource.clip = GetClip(bundleName, audioName); ThemeSource.Play(); }
+        public static void Play(Sources source, string bundleName, string audioName) => Play(source, GetBundle(bundleName), audioName, 0);
         /// <summary>
         /// Sets clip to theme and calls Play.
         /// </summary>
-        public static void PlayTheme(string bundleName, string audioName, ulong delay) { ThemeSource.clip = GetClip(bundleName, audioName); ThemeSource.Play(delay); }
-
-        /// <summary>
-        /// Sets clip to source and calls Play.
-        /// </summary>
-        public static void PlaySource(TPAudioBundle bundle, string audioName) { Source.clip = GetClip(bundle, audioName); Source.Play(); }
-        /// <summary>
-        /// Sets clip to source and calls Play.
-        /// </summary>
-        public static void PlaySource(TPAudioBundle bundle, string audioName, ulong delay) { Source.clip = GetClip(bundle, audioName); Source.Play(delay); }
-        /// <summary>
-        /// Sets clip to source and calls Play.
-        /// </summary>
-        public static void PlaySource(string bundleName, string audioName) { Source.clip = GetClip(bundleName, audioName); Source.Play(); }
-        /// <summary>
-        /// Sets clip to source and calls Play.
-        /// </summary>
-        public static void PlaySource(string bundleName, string audioName, ulong delay) { Source.clip = GetClip(bundleName, audioName); Source.Play(delay); }
+        public static void Play(Sources source, string bundleName, string audioName, ulong delay) => Play(source, GetBundle(bundleName), audioName, delay);
 
         /// <summary>
         /// Gets clip by name in bundle.

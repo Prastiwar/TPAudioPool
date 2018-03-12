@@ -22,6 +22,7 @@ ExportedObj/
 *.booproj
 *.vs
 Properties/
+bin/
 
 # ============ #
 # OS generated #
