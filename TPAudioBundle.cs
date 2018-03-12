@@ -15,15 +15,26 @@ namespace TP.Utilities
     class TPAudioBundleEditor : UnityEditor.Editor
     {
         UnityEditorInternal.ReorderableList list;
-        UnityEditor.SerializedProperty array;
+        bool isValid;
 
         public void OnEnable()
         {
-            array = serializedObject.FindProperty("AudioObjects");
-            list = new UnityEditorInternal.ReorderableList(serializedObject, array, true, true, true, true)
+            list = new UnityEditorInternal.ReorderableList(serializedObject, serializedObject.FindProperty("AudioObjects"), true, true, true, true)
             {
-                drawElementCallback = DrawElement
+                drawElementCallback = DrawElement,
+                onAddCallback = OnAdd,
+                drawHeaderCallback = (Rect rect) => { UnityEditor.EditorGUI.LabelField(rect, "Audio Objects in this bundle"); }
             };
+        }
+
+        void OnAdd(UnityEditorInternal.ReorderableList reList)
+        {
+            var index = reList.serializedProperty.arraySize;
+            reList.serializedProperty.arraySize++;
+            reList.index = index;
+            var element = reList.serializedProperty.GetArrayElementAtIndex(index);
+            element.FindPropertyRelative("Name").stringValue = "";
+            element.FindPropertyRelative("Clip").objectReferenceValue = null;
         }
 
         void DrawElement(Rect rect, int index, bool isActive, bool isFocused)
@@ -31,6 +42,7 @@ namespace TP.Utilities
             var element = list.serializedProperty.GetArrayElementAtIndex(index);
             rect.y += 2;
             float halfWidth = rect.width / 2;
+            int length = list.serializedProperty.arraySize;
 
             UnityEditor.EditorGUI.PropertyField(
                 new Rect(rect.x, rect.y, halfWidth, UnityEditor.EditorGUIUtility.singleLineHeight),
@@ -39,6 +51,24 @@ namespace TP.Utilities
             UnityEditor.EditorGUI.PropertyField(
                 new Rect(rect.x + halfWidth, rect.y, halfWidth, UnityEditor.EditorGUIUtility.singleLineHeight),
                 element.FindPropertyRelative("Clip"), GUIContent.none);
+
+            for (int i = 0; i < length; i++)
+            {
+                if (i == index)
+                {
+                    continue;
+                }
+
+                var otherElement = list.serializedProperty.GetArrayElementAtIndex(i);
+                if (otherElement.FindPropertyRelative("Name").stringValue == element.FindPropertyRelative("Name").stringValue)
+                {
+                    isValid = false;
+                    UnityEditor.EditorGUI.DrawRect(new Rect(rect.x - 16, rect.y, 15, UnityEditor.EditorGUIUtility.singleLineHeight), Color.red);
+                    return;
+                }
+            }
+
+            isValid = true;
         }
 
         public override void OnInspectorGUI()
@@ -47,15 +77,14 @@ namespace TP.Utilities
 
             list.DoLayoutList();
 
-            //base.DrawDefaultInspector();
-            //if (GUI.changed)
-            //{
-            //    foreach (UnityEditor.SerializedProperty item in array)
-            //    {
-            //        bundle.AudioObjects[item.FindPropertyRelative("Name").stringValue] =
-            //            (item.FindPropertyRelative("Clip").objectReferenceValue as object as AudioClip);
-            //    }
-            //}
+            if (!isValid)
+            {
+                if (list.serializedProperty.arraySize < 1)
+                {
+                    isValid = true;
+                }
+                UnityEditor.EditorGUILayout.HelpBox("You have non unique names in bundle!", UnityEditor.MessageType.Error);
+            }
 
             serializedObject.ApplyModifiedProperties();
         }

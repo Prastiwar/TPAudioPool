@@ -193,6 +193,18 @@ namespace TP.Utilities
             return GetClip(Pool[bundleName], audioName);
         }
 
+        /// <summary>
+        /// Gets bundle by name.
+        /// </summary>
+        TPAudioBundle GetBundle(string bundleName)
+        {
+            if (Pool.ContainsKey(bundleName))
+            {
+                return Pool[bundleName];
+            }
+            return null;
+        }
+
     }
 
 }
