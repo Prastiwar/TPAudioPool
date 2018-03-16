@@ -1,6 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿/**
+*   Authored by Tomasz Piowczyk
+*   @ 2018 MIT LICENSE
+*   Repository: https://github.com/Prastiwar/TPAudioPool 
+*/
 using UnityEngine;
 
 namespace TP.Utilities

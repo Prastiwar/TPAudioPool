@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/**
+*   Authored by Tomasz Piowczyk
+*   @ 2018 MIT LICENSE
+*   Repository: https://github.com/Prastiwar/TPAudioPool 
+*/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -137,24 +142,24 @@ namespace TP.Utilities
         /// <summary>  
         ///  Adds Audio Bundle to pool.
         /// </summary> 
-        public static void AddToPool(string bundleName, TPAudioBundle bundle) => Pool[bundleName] = bundle;
+        public static void AddToPool(string bundleName, TPAudioBundle bundle) { Pool[bundleName] = bundle; }
         /// <summary>  
         ///  Adds Audio Bundle to pool.
         /// </summary> 
-        public static void AddToPool(TPAudioBundle bundle) => AddToPool(bundle.name, bundle);
+        public static void AddToPool(TPAudioBundle bundle) { AddToPool(bundle.name, bundle); }
 
         /// <summary>  
         ///  Removes Audio Bundle from pool.
         /// </summary> 
-        public static void RemoveFromPool(string bundleName) => Pool.Remove(bundleName);
+        public static void RemoveFromPool(string bundleName) { Pool.Remove(bundleName); }
         /// <summary>  
         ///  Removes Audio Bundle from pool.
         /// </summary> 
-        public static void RemoveFromPool(TPAudioBundle bundle) => Pool.Remove(bundle.name);
+        public static void RemoveFromPool(TPAudioBundle bundle) { Pool.Remove(bundle.name); }
         /// <summary>  
         ///  Removes all Audio Bundles from pool.
         /// </summary> 
-        public static void Dispose() => Pool.Clear();
+        public static void Dispose() { Pool.Clear(); }
 
         /// <summary>
         /// Sets clip and returns AudioSource.
@@ -163,7 +168,7 @@ namespace TP.Utilities
         /// <summary>
         /// Sets clip and returns AudioSource.
         /// </summary>
-        public static AudioSource SetClipSource(string bundleName, string audioName) => SetClipSource(Pool[bundleName], audioName);
+        public static AudioSource SetClipSource(string bundleName, string audioName) { return SetClipSource(Pool[bundleName], audioName); }
 
 
         /// <summary>
@@ -173,24 +178,24 @@ namespace TP.Utilities
         /// <summary>
         /// Sets clip and returns Theme AudioSource.
         /// </summary>
-        public static AudioSource SetClipTheme(string bundleName, string audioName) => SetClipTheme(Pool[bundleName], audioName);
+        public static AudioSource SetClipTheme(string bundleName, string audioName) { return SetClipTheme(Pool[bundleName], audioName); }
 
         /// <summary> 
         /// Sets clip to Source then calls PlayOneShot. 
         /// </summary>
-        public static void PlayOneShot(string bundleName, string audioName, float volumeScale) => Source.PlayOneShot(GetClip(bundleName, audioName), volumeScale);
+        public static void PlayOneShot(string bundleName, string audioName, float volumeScale) { Source.PlayOneShot(GetClip(bundleName, audioName), volumeScale); }
         /// <summary> 
         /// Sets clip to Source then calls PlayOneShot. 
         /// </summary>
-        public static void PlayOneShot(TPAudioBundle bundle, string audioName, float volumeScale) => Source.PlayOneShot(GetClip(bundle, audioName), volumeScale);
+        public static void PlayOneShot(TPAudioBundle bundle, string audioName, float volumeScale) { Source.PlayOneShot(GetClip(bundle, audioName), volumeScale); }
         /// <summary> 
         /// Sets clip to Source then calls PlayOneShot. 
         /// </summary>
-        public static void PlayOneShot(string bundleName, string audioName) => Source.PlayOneShot(GetClip(bundleName, audioName));
+        public static void PlayOneShot(string bundleName, string audioName) { Source.PlayOneShot(GetClip(bundleName, audioName)); }
         /// <summary> 
         /// Sets clip to Source then calls PlayOneShot. 
         /// </summary>
-        public static void PlayOneShot(TPAudioBundle bundle, string audioName) => Source.PlayOneShot(GetClip(bundle, audioName));
+        public static void PlayOneShot(TPAudioBundle bundle, string audioName) { Source.PlayOneShot(GetClip(bundle, audioName)); }
         
         /// <summary>
         /// Sets clip to theme and calls Play.
@@ -212,15 +217,15 @@ namespace TP.Utilities
         /// <summary>
         /// Sets clip to theme and calls Play.
         /// </summary>
-        public static void Play(Sources source, TPAudioBundle bundle, string audioName) => Play(source, bundle, audioName, 0);
+        public static void Play(Sources source, TPAudioBundle bundle, string audioName) { Play(source, bundle, audioName, 0); }
         /// <summary>
         /// Sets clip to theme and calls Play.
         /// </summary>
-        public static void Play(Sources source, string bundleName, string audioName) => Play(source, GetBundle(bundleName), audioName, 0);
+        public static void Play(Sources source, string bundleName, string audioName) { Play(source, GetBundle(bundleName), audioName, 0); }
         /// <summary>
         /// Sets clip to theme and calls Play.
         /// </summary>
-        public static void Play(Sources source, string bundleName, string audioName, ulong delay) => Play(source, GetBundle(bundleName), audioName, delay);
+        public static void Play(Sources source, string bundleName, string audioName, ulong delay) { Play(source, GetBundle(bundleName), audioName, delay); }
 
         /// <summary>
         /// Gets clip by name in bundle.
@@ -239,12 +244,12 @@ namespace TP.Utilities
         /// <summary>
         /// Gets clip by name in bundle which has name.
         /// </summary>
-        public static AudioClip GetClip(string bundleName, string audioName) => GetClip(Pool[bundleName], audioName);
+        public static AudioClip GetClip(string bundleName, string audioName) { return GetClip(Pool[bundleName], audioName); }
 
         /// <summary>
         /// Gets bundle by name.
         /// </summary>
-        public static TPAudioBundle GetBundle(string bundleName) => Pool[bundleName];
+        public static TPAudioBundle GetBundle(string bundleName) { return Pool[bundleName]; }
 
     }
 
