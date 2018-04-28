@@ -7,21 +7,29 @@ This is updated version of deprecated [TPSoundManagerCreator](https://github.com
 <br>
 <br>
 * #### Methods
-<img src = https://d3higte790sj35.cloudfront.net/images/rs/jo/dce8e71d52cb0a80a296c3c1c9773390.png> </img>
+<img src = https://d3higte790sj35.cloudfront.net/images/wj/ml/5dbb2c12494780736092ecdc4e8384f8.png> </img>
 <br>
-<img src = https://d3higte790sj35.cloudfront.net/images/bz/kl/f83c2223f19e79432958e5c321c08aba.png> </img>
+<img src = https://d3higte790sj35.cloudfront.net/images/ks/px/8ae7963e217ea53d02e9af52120292b7.png> </img>
+<br> *If you don't use .NET 4.x* <br>
+<img src = https://d3higte790sj35.cloudfront.net/images/jx/ip/8b358d64af4987ed332aafe405328046.png> </img>
+<br> *If you don't use .NET 4.x* <br>
+<img src = https://d3higte790sj35.cloudfront.net/images/gv/ay/9badac3dba747063840bdd1e44ea2218.png> </img> 
+<br> *If you use .NET 4.x* <br>
+<img src = https://d3higte790sj35.cloudfront.net/images/je/nq/e626dd0c9c1bda0b495e3c3e67ab24c5.png> </img>
+<br> *If you use .NET 4.x* <br>
+<img src = https://d3higte790sj35.cloudfront.net/images/nw/rg/8324f877effb1525c4fb7a08829b2c7e.png> </img>
+<br><br>
+<img src = https://d3higte790sj35.cloudfront.net/images/yp/se/3111cf25bdddfebbc24139e315686b0e.png> </img>
 <br>
-<img src = https://d3higte790sj35.cloudfront.net/images/nd/np/f21e06ae447c26c8f396e8846b4c55a1.png> </img>
-<br>
-<img src = https://d3higte790sj35.cloudfront.net/images/zq/to/0dce1396c5f48de75a873960bcc7fe31.png> </img>
-<br>
-<img src = https://d3higte790sj35.cloudfront.net/images/ds/ty/d86081ee479a16134cf01faa2e12b8f1.png> </img>
-<br>
-<img src = https://d3higte790sj35.cloudfront.net/images/vv/rh/1b1b6445beaf535ae6236337415adc51.png> </img>
-<br>
-<img src = https://d3higte790sj35.cloudfront.net/images/lw/qs/26bba74a3216fe2fda3351c8d4c5c513.png> </img>
-<br>
-<img src = https://d3higte790sj35.cloudfront.net/images/pi/aq/bf5f228811509035f1777e5c7d4283b7.png> </img>
+<img src = https://d3higte790sj35.cloudfront.net/images/nh/fd/68355f7dc9256ab88569eae5df8f1e8f.png> </img>
+<br> *If you don't use .NET 4.x* <br>
+<img src = https://d3higte790sj35.cloudfront.net/images/fl/uk/8d42c62aad02bc0c647599725ddcd851.png> </img>
+<br> *If you don't use .NET 4.x* <br>
+<img src = https://d3higte790sj35.cloudfront.net/images/yb/ox/216e25cdc1011ad4988ac198ba9dea49.png> </img> 
+<br> *If you use .NET 4.x* <br>
+<img src = https://d3higte790sj35.cloudfront.net/images/fv/po/2158a89eee56fda9b404fa8150f9671e.png> </img>
+<br> *If you use .NET 4.x* <br>
+<img src = https://d3higte790sj35.cloudfront.net/images/ae/nr/40cc9db43512e4663c1238b62abd14d2.png> </img>
 <br>
 
 * #### Memory allocation
