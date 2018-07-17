@@ -1,11 +1,11 @@
 ﻿/**
 *   Authored by Tomasz Piowczyk
-*   @ 2018 MIT LICENSE
+*   Check MIT LICENSE: https://github.com/Prastiwar/TPAudioPool/blob/master/LICENSE
 *   Repository: https://github.com/Prastiwar/TPAudioPool 
 */
 using UnityEngine;
 
-namespace TP.Utilities
+namespace TP
 {
     [CreateAssetMenu(menuName = "TPAudioPool/Audio Bundle", fileName = "AudioBundle")]
     public class TPAudioBundle : ScriptableObject
@@ -13,13 +13,14 @@ namespace TP.Utilities
         public TPAudioObject[] AudioObjects;
     }
 
+#if UNITY_EDITOR
     [UnityEditor.CustomEditor(typeof(TPAudioBundle))]
-    class TPAudioBundleEditor : UnityEditor.Editor
+    internal class TPAudioBundleEditor : UnityEditor.Editor
     {
-        UnityEditorInternal.ReorderableList list;
-        bool isValid;
+        private UnityEditorInternal.ReorderableList list;
+        private bool isValid;
 
-        public void OnEnable()
+        private void OnEnable()
         {
             list = new UnityEditorInternal.ReorderableList(serializedObject, serializedObject.FindProperty("AudioObjects"), true, true, true, true)
             {
@@ -29,7 +30,7 @@ namespace TP.Utilities
             };
         }
 
-        void OnAdd(UnityEditorInternal.ReorderableList reList)
+        private void OnAdd(UnityEditorInternal.ReorderableList reList)
         {
             var index = reList.serializedProperty.arraySize;
             reList.serializedProperty.arraySize++;
@@ -39,7 +40,7 @@ namespace TP.Utilities
             element.FindPropertyRelative("Clip").objectReferenceValue = null;
         }
 
-        void DrawElement(Rect rect, int index, bool isActive, bool isFocused)
+        private void DrawElement(Rect rect, int index, bool isActive, bool isFocused)
         {
             var element = list.serializedProperty.GetArrayElementAtIndex(index);
             rect.y += 2;
@@ -69,16 +70,13 @@ namespace TP.Utilities
                     return;
                 }
             }
-
             isValid = true;
         }
 
         public override void OnInspectorGUI()
         {
             serializedObject.UpdateIfRequiredOrScript();
-
             list.DoLayoutList();
-
             if (!isValid)
             {
                 if (list.serializedProperty.arraySize < 1)
@@ -87,9 +85,9 @@ namespace TP.Utilities
                 }
                 UnityEditor.EditorGUILayout.HelpBox("You have non unique names in bundle!", UnityEditor.MessageType.Error);
             }
-
             serializedObject.ApplyModifiedProperties();
         }
         
     }
+#endif
 }
